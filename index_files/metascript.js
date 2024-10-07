@@ -251,7 +251,6 @@
                 );
               })()
           );
-        console.log(a.length);
         var o,
           u = 0,
           l = document.querySelector("body"),
@@ -402,6 +401,7 @@
       $ = /^[+\-=e\s\d]*\d+[.\d]*([a-z]*|%)\s*$/i,
       Z = {},
       J = {},
+      isPlaying = false,
       K = function (t) {
         return (J = kt(t, Z)) && Er;
       },
@@ -1758,7 +1758,7 @@
             return this.totalTime(Jt(this, t), B(e));
           }),
           (e.restart = function (t, e) {
-            return this.play().totalTime(t ? -this._delay : 0, B(e));
+            // return this.play().totalTime(t ? -this._delay : 0, B(e));
           }),
           (e.play = function (t, e) {
             return null != t && this.seek(t, e), this.reversed(!1).paused(!1);
@@ -5060,19 +5060,25 @@
                     //     });
                     // }
 
-                    var videoElement = w.querySelector("video");
-                    console.log("videoElement:", videoElement);
-                    if (videoElement) {
-                      console.log("videoElement.src:", videoElement.src);
-                      videoElement.addEventListener(
-                        "canplaythrough",
-                        function () {
-                          console.log("canplaythrough événement déclenché");
-                          t = videoElement;
-                          t.play(); // Lire la vidéo une fois prête
-                        }
-                      );
-                    }
+                    // var videoElement = w.querySelector("video");
+                    // // console.log("videoElement:", videoElement);
+                    // if (videoElement) {
+                    //   console.log("videoElement.readyState:", videoElement.readyState);
+
+                    //   videoElement.addEventListener(
+                    //     "canplay",
+                    //     function () {
+                    //       console.log("canplaythrough événement déclenché");
+                    //       console.log("videoElement.src:", videoElement.src);
+                    //       console.log("videoElement.paused:", videoElement.paused);
+                    //       console.log("videoElement.ended:", videoElement.ended);
+                    //       console.log("videoElement.readyState:", videoElement.readyState);
+                    
+                    //       t = videoElement;
+                    //       t.play(); // Lire la vidéo une fois prête
+                    //     }
+                    //   );
+                    // }
                   }
                 } else {
                   // Sélectionner l'élément actif au centre de l'écran
@@ -5089,95 +5095,22 @@
                 }
               };
 
-              // r.addEventListener("click", function (t) {
-
-              //     // t.clientY < window.innerHeight - 100 && g.click();
-              // });
-              var videoElements = document.querySelectorAll('video');
-              var videosLoaded = 0;
-              var videosToRetry = [];
-              var retryCount = 0;
-              var maxRetries = 5;
-              
-              // Vérifier si les vidéos sont chargées
-              function checkIfVideosLoaded() {
-                videosLoaded = 0;
-                videoElements.forEach(function(video) {
-                  if (video.readyState >= 3) {
-                    videosLoaded++;
-                    console.log('La vidéo ' + video.src + ' est chargée');
-                  } else {
-                    console.log('La vidéo ' + video.src + ' n\'est pas chargée');
-                    videosToRetry.push(video);
-                  }
-                });
-              }
-              
-              // Réessayer de charger les vidéos qui n'ont pas été chargées
-              function retryLoadingVideos() {
-                retryCount++;
-                videosToRetry.forEach(function(video) {
-                  video.load();
-                  console.log('Réessayer de charger la vidéo ' + video.src);
-                });
-                videosToRetry = [];
-              }
-              
-              // Vérifier si toutes les vidéos sont chargées et réessayer si nécessaire
-              function checkAndRetry() {
-                checkIfVideosLoaded();
-                if (videosLoaded === videoElements.length) {
-                  console.log('Toutes les vidéos sont chargées');
-                  // Arrêter la boucle
-                  clearInterval(intervalId);
-                } else if (retryCount < maxRetries) {
-                  retryLoadingVideos();
-                } else {
-                  console.log('Erreur : les vidéos n\'ont pas pu être chargées après ' + maxRetries + ' tentatives');
-                  // Arrêter la boucle
-                  clearInterval(intervalId);
-                }
-              }
-              
-              // Lancer la boucle
-              var intervalId = setInterval(checkAndRetry, 500);
-              // videoElements.forEach(function (video) {
-              //   video.addEventListener("canplaythrough", function () {
-              //     videosLoaded++;
-              //     console.log("La vidéo est prête à être lue");
-              //     if (videosLoaded === videoElements.length) {
-              //       // Toutes les vidéos sont chargées, lancer la fonction S
-              //       S();
-              //     }
-              //   });
-              // });
               var L,
-                E,
-                k,
-                M = setInterval(function () {
-                  console.log(M);
-                  console.log("not ready yet...");
-                  console.log("n:", n);
-                  console.log(
-                    "e.classList.contains('touch'):",
-                    e.classList.contains("touch")
-                  );
-                  n &&
-                    (clearInterval(M),
-                    console.log("now ready"));
-                }, 500),
-                O = function () {
+              E,
+              k,
+              M = setInterval(function () {
+                  console.log("not ready yet..."), n && (clearInterval(M), console.log("now ready"), e.classList.contains("touch") && S());
+              }, 50),
+              O = function () {
                   L = (_ - window.innerWidth) / window.innerWidth;
-                };
-              O(),
-                r.addEventListener("mousemove", function (t) {
+              };
+          O(),
+              r.addEventListener("mousemove", function (t) {
                   r.classList.contains("rolling") &&
-                    (function (t) {
-                      (E = { x: t.clientX }),
-                        (k = -(E.x * L - (_ - window.innerWidth) / 2)),
-                        Gn.to(i, { x: k, ease: "linear" });
-                    })(t);
-                });
+                      (function (t) {
+                          (E = { x: t.clientX }), (k = -(E.x * L - (_ - window.innerWidth) / 2)), Gn.to(i, { x: k, ease: "linear" });
+                      })(t);
+              });
               var A = !0,
                 C = !0,
                 P = !0,

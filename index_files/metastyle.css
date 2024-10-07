@@ -1094,7 +1094,8 @@ body.transitions .header-info-overlay-cont {
     .home .gallery-item.show {
         grid-template-columns: 3rem auto 3rem;
     }
-    .home .gallery-left ,
+
+    .home .gallery-left,
     .home .gallery-right {
         position: absolute;
         top: unset;
@@ -1103,6 +1104,13 @@ body.transitions .header-info-overlay-cont {
         align-items: flex-end;
     }
 
+    @media (hover: none) {
+
+        .home .gallery-left,
+        .home .gallery-right {
+            bottom: var(--defaultMargin);
+        }
+    }
 
 }
 
