@@ -906,10 +906,12 @@ body.transitions .header-info-overlay-cont {
         padding: 1rem;
     }
 }
-
+.is-active.header-info{
+    pointer-events: none;
+  }
 
 .header-info-icon {
-    width: 2.5rem;
+    width: auto;
 }
 
 .header-info-overlay-cont {
@@ -1363,6 +1365,12 @@ body.transitions .header-info-overlay-cont {
 .about .wp-block-table table td:first-child {
     padding-right: 9.5rem;
 }
+.about .wp-block-table table td{
+    padding-right: 0;
+}
+.about .wp-block-table table td.interval {
+    padding: 0 2px;
+}
 
 .single-projects .gallery-cont {
     display: grid;
@@ -1383,6 +1391,30 @@ body.transitions .header-info-overlay-cont {
         position: unset;
     }
 }
+
+  
+  .loading-bar-inner {
+    background: #ff000063;
+    position: absolute;
+    top: 50vh;
+    pointer-events: none;
+    bottom: 0;
+    padding: 110% 0%;
+    transform: translate(0px, -50%);
+    right: 0;
+    left: 0;
+    z-index: 10000;
+
+  }
+  
+  .loading-bar-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* color: #333; */
+  }
 
 .gallery-cont {
     height: 100%;

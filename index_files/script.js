@@ -1,4 +1,3 @@
-/*! For license information please see metascript.js.LICENSE.txt */
 (() => {
   "use strict";
   var t = {
@@ -264,18 +263,16 @@
                   navigator.vendor ||
                   window.opera
                 ).indexOf("Instagram") > -1),
-              console.log("insta reload check"),
               t && document.documentElement.classList.contains("ios")
                 ? (console.log(sessionStorage.getItem("instaReloaded")),
                   "false" === sessionStorage.getItem("instaReloaded") &&
                     (sessionStorage.setItem("instaReloaded", "true"),
-                    console.log(sessionStorage.getItem("instaReloaded")),
-                    console.log("reloading"),
+                    // console.log(sessionStorage.getItem("instaReloaded")),
                     r.click()))
-                : console.log("not insta browser on ios"),
-              setTimeout(function () {
-                l.classList.add("transitions");
-              }, 300);
+                : // console.log("not insta browser on ios"),
+                  setTimeout(function () {
+                    l.classList.add("transitions");
+                  }, 300);
           };
         l.classList.contains("home")
           ? (console.log("showing intro"),
@@ -335,6 +332,7 @@
         (t.__proto__ = e);
     }
     var l,
+      videos,
       c,
       h,
       f,
@@ -401,7 +399,6 @@
       $ = /^[+\-=e\s\d]*\d+[.\d]*([a-z]*|%)\s*$/i,
       Z = {},
       J = {},
-      isPlaying = false,
       K = function (t) {
         return (J = kt(t, Z)) && Er;
       },
@@ -1758,7 +1755,7 @@
             return this.totalTime(Jt(this, t), B(e));
           }),
           (e.restart = function (t, e) {
-            // return this.play().totalTime(t ? -this._delay : 0, B(e));
+            return this.play().totalTime(t ? -this._delay : 0, B(e));
           }),
           (e.play = function (t, e) {
             return null != t && this.seek(t, e), this.reversed(!1).paused(!1);
@@ -4987,6 +4984,7 @@
               var g,
                 y,
                 w,
+                isLoading = false,
                 b = function () {
                   window.innerWidth <= 1e3 && e.classList.contains("touch")
                     ? ((u.style.left = "0px"),
@@ -5019,6 +5017,35 @@
                 };
               T();
               var S = function () {
+                let videos = document.querySelectorAll(".gallery-video");
+                if (isLoading == false) {
+                  console.log("loading");
+
+                  videos.forEach(function (video) {
+                    video.src = video.dataset.src;
+                    video.load();
+                    setTimeout(function () {
+                      console.log(video.readyState);
+                    }, 500); // délai de 500ms
+                    // }
+           
+                    // video.pause();
+                  });
+
+                  // if (videoElement) {
+                  //   console.log(videoElement.readyState);
+                  //   if (videoElement.readyState >= 4) {
+                  //     // videoElement.play();
+                  //   }else {
+                  // videoElement.src = videoElement.dataset.src;
+                  // videoElement.load();
+                  // setTimeout(function() {
+                  //   videoElement.play();
+                  // }, 500); // délai de 500ms
+                  //   }
+                  // }
+                  isLoading = true;
+                }
                 if (g) {
                   if (
                     g !==
@@ -5029,6 +5056,7 @@
                   ) {
                     // Supprimer les classes actives de l'élément précédent
                     g.classList.remove("active");
+
                     g.closest("div").classList.remove("active");
                     w.classList.remove("show");
                     if (t) {
@@ -5036,7 +5064,6 @@
                       t = null;
                     }
 
-                    // Sélectionner le nouvel élément au centre de l'écran
                     g = document.elementFromPoint(
                       window.innerWidth / 2,
                       window.innerHeight - 25
@@ -5047,38 +5074,23 @@
                     w = document.querySelector(
                       '[data-itemID="'.concat(y, '"]')
                     );
+                    var videoElement = w.querySelector("video");
+
                     w.classList.add("show");
 
-                    // // Vérifier si la vidéo existe, et écouter l'événement 'canplaythrough' avant de la lire
-                    // var videoElement = w.querySelector("video");
-                    //               console.log("testy");
-                    // if (videoElement) {
-                    //     videoElement.addEventListener('canplaythrough', function() {
-                    //         t = videoElement;
+                    videos.forEach(function (video) {
+                      if (
+                        videoElement &&
+                        videoElement.dataset.id !== w.dataset.itemid - 1 &&
+                        videoElement.readyState == 4
+                      ) {
+                        video.pause();
+                      }
+                    });
 
-                    //         t.play();  // Lire la vidéo une fois prête
-                    //     });
-                    // }
-
-                    // var videoElement = w.querySelector("video");
-                    // // console.log("videoElement:", videoElement);
-                    // if (videoElement) {
-                    //   console.log("videoElement.readyState:", videoElement.readyState);
-
-                    //   videoElement.addEventListener(
-                    //     "canplay",
-                    //     function () {
-                    //       console.log("canplaythrough événement déclenché");
-                    //       console.log("videoElement.src:", videoElement.src);
-                    //       console.log("videoElement.paused:", videoElement.paused);
-                    //       console.log("videoElement.ended:", videoElement.ended);
-                    //       console.log("videoElement.readyState:", videoElement.readyState);
-                    
-                    //       t = videoElement;
-                    //       t.play(); // Lire la vidéo une fois prête
-                    //     }
-                    //   );
-                    // }
+                    if (videoElement && videoElement.readyState >= 4) {
+                      videoElement.play();
+                    }
                   }
                 } else {
                   // Sélectionner l'élément actif au centre de l'écran
@@ -5091,26 +5103,34 @@
                   y = g.dataset.itemid;
                   document.querySelector(".show").classList.remove("show");
                   w = document.querySelector('[data-itemID="'.concat(y, '"]'));
+                  console.log(w);
                   w.classList.add("show");
                 }
               };
 
               var L,
-              E,
-              k,
-              M = setInterval(function () {
-                  console.log("not ready yet..."), n && (clearInterval(M), console.log("now ready"), e.classList.contains("touch") && S());
-              }, 50),
-              O = function () {
+                E,
+                k,
+                M = setInterval(function () {
+                  console.log("not ready yet..."),
+                    n &&
+                      (console.log(n),
+                      clearInterval(M),
+                      console.log("now ready"),
+                      e.classList.contains("touch") && S());
+                }, 300),
+                O = function () {
                   L = (_ - window.innerWidth) / window.innerWidth;
-              };
-          O(),
-              r.addEventListener("mousemove", function (t) {
+                };
+              O(),
+                r.addEventListener("mousemove", function (t) {
                   r.classList.contains("rolling") &&
-                      (function (t) {
-                          (E = { x: t.clientX }), (k = -(E.x * L - (_ - window.innerWidth) / 2)), Gn.to(i, { x: k, ease: "linear" });
-                      })(t);
-              });
+                    (function (t) {
+                      (E = { x: t.clientX }),
+                        (k = -(E.x * L - (_ - window.innerWidth) / 2)),
+                        Gn.to(i, { x: k, ease: "linear" });
+                    })(t);
+                });
               var A = !0,
                 C = !0,
                 P = !0,
@@ -5264,7 +5284,6 @@
             })();
             break;
           default:
-            console.log("no router matches");
         }
       },
       Jn = function () {
@@ -5331,7 +5350,7 @@
                       "click",
                       function (t) {
                         t.stopPropagation(),
-                          console.log("close btn clicked"),
+                          // console.log("close btn clicked"),
                           e.classList.remove("is-active"),
                           a(r);
                       },
