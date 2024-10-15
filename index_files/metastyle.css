@@ -831,10 +831,12 @@ section {
 
 .gallery-item {
     display: none;
+    /* visibility: hidden; */
 }
-
 .gallery-item.show {
+    /* visibility: visible; */
     display: block;
+    
 }
 
 @media only screen and (max-width: 62.5em) {
@@ -1042,12 +1044,21 @@ body.transitions .header-info-overlay-cont {
 }
 
 .home .gallery-item {
-    position: unset;
     height: 100%;
+    position: unset;
+    transition: 0.10 ease-in-out;
+    /* position: absolute;
+    top: 100vh;
+    right: 0;
+    height: 100%;
+    left: 0;
+    bottom: 0; */
+   
 }
 
 .home .gallery-item.show {
     display: flex;
+    top: 0;
     align-items: center;
     justify-content: center;
 }
@@ -1394,7 +1405,7 @@ body.transitions .header-info-overlay-cont {
 
   
   .loading-bar-inner {
-    background: #ff000063;
+    /* background: #ff000063; */
     position: absolute;
     top: 50vh;
     pointer-events: none;

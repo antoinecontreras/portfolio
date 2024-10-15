@@ -5022,13 +5022,12 @@
                   console.log("loading");
 
                   videos.forEach(function (video) {
-                    video.src = video.dataset.src;
-                    video.load();
-                    setTimeout(function () {
-                      console.log(video.readyState);
-                    }, 500); // délai de 500ms
+                    // video.src = video.dataset.src;
+                    // video.load();
+                    // video.addEventListener("loadeddata", function () {
+                    //   console.log("La vidéo est chargée :", video.src);
+                    // });
                     // }
-           
                     // video.pause();
                   });
 
@@ -5075,22 +5074,20 @@
                       '[data-itemID="'.concat(y, '"]')
                     );
                     var videoElement = w.querySelector("video");
-
                     w.classList.add("show");
+                    // videos.forEach(function (video) {
+                    //   if (
+                    //     videoElement &&
+                    //     videoElement.dataset.id !== w.dataset.itemid - 1 &&
+                    //     videoElement.readyState == 4
+                    //   ) {
+                    //     video.pause();
+                    //   }
+                    // });
 
-                    videos.forEach(function (video) {
-                      if (
-                        videoElement &&
-                        videoElement.dataset.id !== w.dataset.itemid - 1 &&
-                        videoElement.readyState == 4
-                      ) {
-                        video.pause();
-                      }
-                    });
-
-                    if (videoElement && videoElement.readyState >= 4) {
-                      videoElement.play();
-                    }
+                    // if (videoElement && videoElement.readyState >= 4) {
+                    //   videoElement.play();
+                    // }
                   }
                 } else {
                   // Sélectionner l'élément actif au centre de l'écran
