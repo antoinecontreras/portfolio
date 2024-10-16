@@ -25,11 +25,11 @@ function replaceVideosWithWebm(videos) {
   // Vérification si l'appareil est mobile
   if (isMobile()) {
     var videos = document.querySelectorAll("video");
-    videos.forEach(function (video) {
-      video.src = video.dataset.src;
-      console.log(video);
-      video.load();
-    });
+    // videos.forEach(function (video) {
+    //   video.src = video.dataset.src;
+    //   console.log(video);
+    //   video.load();
+    // });
     videos.forEach((video) => {
       if (video.readyState === 4) {
         console.log("La video est bien chargee");
@@ -37,15 +37,15 @@ function replaceVideosWithWebm(videos) {
       }
     });
   } else {
-    // const resolution = getVideoResolution();
-    // console.log(resolution);
-    // if (resolution !== "_360p.webm") {
-    //   videos.forEach((video) => {
-    //     let src = video.getAttribute("src");
-    //     let newSrc = src.replace("_360p.webm", resolution);
-    //     video.setAttribute("src", newSrc);
-    //   });
-    // }
+    const resolution = getVideoResolution();
+    console.log(resolution);
+    if (resolution !== "_360p.webm") {
+      videos.forEach((video) => {
+        let src = video.getAttribute("src");
+        let newSrc = src.replace("_360p.webm", resolution);
+        video.setAttribute("src", newSrc);
+      });
+    }
   }
 }
 

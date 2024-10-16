@@ -1,4 +1,9 @@
 img/
+.ds_store/
+backupindex_files/
+media/
 font/
 projects/
 sftp.json/
+Archive.zip
+.DS_Store

@@ -1046,7 +1046,7 @@ body.transitions .header-info-overlay-cont {
 .home .gallery-item {
     height: 100%;
     position: unset;
-    transition: 0.10 ease-in-out;
+    /* transition: 0.10 ease-in-out; */
     /* position: absolute;
     top: 100vh;
     right: 0;

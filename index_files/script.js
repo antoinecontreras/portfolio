@@ -5017,11 +5017,12 @@
                 };
               T();
               var S = function () {
-                let videos = document.querySelectorAll(".gallery-video");
-                if (isLoading == false) {
-                  console.log("loading");
+    
+                // let videos = document.querySelectorAll(".gallery-video");
+                // if (isLoading == false) {
+                //   console.log("loading");
 
-                  videos.forEach(function (video) {
+                  // videos.forEach(function (video) {
                     // video.src = video.dataset.src;
                     // video.load();
                     // video.addEventListener("loadeddata", function () {
@@ -5029,7 +5030,7 @@
                     // });
                     // }
                     // video.pause();
-                  });
+                  // });
 
                   // if (videoElement) {
                   //   console.log(videoElement.readyState);
@@ -5043,8 +5044,8 @@
                   // }, 500); // délai de 500ms
                   //   }
                   // }
-                  isLoading = true;
-                }
+                  // isLoading = true;
+                // }
                 if (g) {
                   if (
                     g !==
