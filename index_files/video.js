@@ -7,16 +7,16 @@ function getVideoResolution() {
   console.log(width);
   if (width <= 640) {
     // Petite résolution pour mobiles
-    return "_360p.webm";
+    return "_360p.mp4";
   } else if (width <= 854) {
     // Résolution moyenne pour téléphone
-    return "_480p.webm"; // Utilise déjà cette version
+    return "_480p.mp4"; // Utilise déjà cette version
   } else if (width <= 1280) {
     // Résolution pour tablette
-    return "_720p.webm"; // À remplacer si disponible
+    return "_720p.mp4"; // À remplacer si disponible
   } else {
     // Résolution par défaut pour Laptop
-    return "_1080p.webm"; // À remplacer si disponible
+    return "_1080p.mp4"; // À remplacer si disponible
   }
 }
 function replaceVideosWithWebm(videos) {
@@ -39,10 +39,10 @@ function replaceVideosWithWebm(videos) {
   } else {
     const resolution = getVideoResolution();
     console.log(resolution);
-    if (resolution !== "_360p.webm") {
+    if (resolution !== "_360p.mp4") {
       videos.forEach((video) => {
         let src = video.getAttribute("src");
-        let newSrc = src.replace("_360p.webm", resolution);
+        let newSrc = src.replace("_360p.mp4", resolution);
         video.setAttribute("src", newSrc);
       });
     }

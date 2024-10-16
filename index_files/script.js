@@ -5017,34 +5017,33 @@
                 };
               T();
               var S = function () {
-    
                 // let videos = document.querySelectorAll(".gallery-video");
                 // if (isLoading == false) {
                 //   console.log("loading");
 
-                  // videos.forEach(function (video) {
-                    // video.src = video.dataset.src;
-                    // video.load();
-                    // video.addEventListener("loadeddata", function () {
-                    //   console.log("La vidéo est chargée :", video.src);
-                    // });
-                    // }
-                    // video.pause();
-                  // });
+                // videos.forEach(function (video) {
+                // video.src = video.dataset.src;
+                // video.load();
+                // video.addEventListener("loadeddata", function () {
+                //   console.log("La vidéo est chargée :", video.src);
+                // });
+                // }
+                // video.pause();
+                // });
 
-                  // if (videoElement) {
-                  //   console.log(videoElement.readyState);
-                  //   if (videoElement.readyState >= 4) {
-                  //     // videoElement.play();
-                  //   }else {
-                  // videoElement.src = videoElement.dataset.src;
-                  // videoElement.load();
-                  // setTimeout(function() {
-                  //   videoElement.play();
-                  // }, 500); // délai de 500ms
-                  //   }
-                  // }
-                  // isLoading = true;
+                // if (videoElement) {
+                //   console.log(videoElement.readyState);
+                //   if (videoElement.readyState >= 4) {
+                //     // videoElement.play();
+                //   }else {
+                // videoElement.src = videoElement.dataset.src;
+                // videoElement.load();
+                // setTimeout(function() {
+                //   videoElement.play();
+                // }, 500); // délai de 500ms
+                //   }
+                // }
+                // isLoading = true;
                 // }
                 if (g) {
                   if (
@@ -5206,10 +5205,10 @@
                           (n = document.querySelector(
                             '[data-itemID="'.concat(r, '"]')
                           )),
-                          t && (t.pause(), (t = null)),
+                        t && (t.pause(), (t = null)),
                           n.classList.add("show"),
-                          n.querySelector("video") &&
-                            (t = n.querySelector("video")).play();
+                          n.querySelector("video") 
+                          // && (t = n.querySelector("video")).play();
                       }),
                         e.addEventListener("mouseleave", function () {
                           e.classList.remove("active"),
