@@ -19,12 +19,12 @@ function getVideoResolution() {
     return "_1080p.mp4"; // À remplacer si disponible
   }
 }
-function replaceVideosWithWebm(videos) {
-  //   let videos = document.querySelectorAll(".gallery-video");
+function replaceVideosWithWebm() {
+    let videos = document.querySelectorAll(".gallery-video");
 
   // Vérification si l'appareil est mobile
   if (isMobile()) {
-    var videos = document.querySelectorAll("video");
+    // var videos = document.querySelectorAll("video");
     // videos.forEach(function (video) {
     //   video.src = video.dataset.src;
     //   console.log(video);
@@ -54,4 +54,4 @@ function isMobile() {
     navigator.userAgent
   );
 }
-// window.addEventListener("load", replaceVideosWithWebm);
+window.addEventListener("load", replaceVideosWithWebm);

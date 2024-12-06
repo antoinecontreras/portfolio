@@ -5199,16 +5199,24 @@
                     ((t = n.querySelector("video")), t.play()),
                     e.forEach(function (e) {
                       e.addEventListener("mouseenter", function () {
+                        console.log(n.classList);
+                        if(n.crollTop!==0){
+                          n.scroll({
+                            top: 0,
+                            behavior: "instant",
+                          });
+                        }
+                     
                         e.classList.add("active"),
                           (r = e.dataset.itemid),
                           n.classList.remove("show"),
                           (n = document.querySelector(
                             '[data-itemID="'.concat(r, '"]')
                           )),
-                        t && (t.pause(), (t = null)),
+                          t && (t.pause(), (t = null)),
                           n.classList.add("show"),
-                          n.querySelector("video") 
-                          // && (t = n.querySelector("video")).play();
+                          n.querySelector("video");
+                        // && (t = n.querySelector("video")).play();
                       }),
                         e.addEventListener("mouseleave", function () {
                           e.classList.remove("active"),
@@ -5216,7 +5224,18 @@
                             (n = document.querySelector(
                               '[data-itemID="'.concat(r, '"]')
                             ));
+                           
+                            
                         });
+                      e.addEventListener("click", function () {
+                       let  n = document.querySelector(
+                          '[data-itemID="'.concat(r, '"]'));
+                         n.scroll({
+                            top: n.offsetHeight,
+                            behavior: "smooth",
+                          });
+ 
+                      });
                     });
                 })();
             break;
